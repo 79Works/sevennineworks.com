@@ -1,136 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SevenNine Works | Custom 3D Printing</title>
-    <link rel="icon" type="image/png" href="./favicon.png" />
-
+    <meta charset="UTF-8">
+    <title>Coming Soon | SevenNine Works</title>
     <style>
-        :root {
-            --bg: #141312;
-            --bg-soft: #1f1d1a;
-            --orange: #ff7a18;
-            --orange-soft: #b84f12;
-            --text: #f5f1eb;
-            --muted: #c5b9aa;
-            --line: rgba(255, 122, 24, 0.35);
+        body { 
+            background: #000000; /* Deep black to match logo background */
+            color: #ffffff; 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            margin: 0; 
         }
-
-        * {
-            box-sizing: border-box;
+        .content { 
+            text-align: center; 
+            padding: 20px;
         }
-
-        body {
-            min-height: 100vh;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            color: var(--text);
-            font-family: Arial, Helvetica, sans-serif;
-            background:
-                radial-gradient(circle at top center, rgba(255, 122, 24, 0.22), transparent 34rem),
-                radial-gradient(circle at bottom center, rgba(255, 122, 24, 0.10), transparent 28rem),
-                linear-gradient(145deg, #0d0d0d 0%, var(--bg) 48%, #211d18 100%);
-        }
-
-        .content {
-            width: min(100%, 780px);
-            text-align: center;
-            padding: 2.25rem;
-            border: 1px solid var(--line);
-            border-radius: 28px;
-            background: rgba(20, 19, 18, 0.82);
-            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
-            backdrop-filter: blur(10px);
-        }
-
-        .logo {
-            width: min(100%, 440px);
-            height: auto;
-            display: block;
-            margin: 0 auto 1.5rem;
-            filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.45));
-        }
-
-        .eyebrow {
-            display: inline-block;
-            margin-bottom: 0.85rem;
-            padding: 0.4rem 0.8rem;
-            border: 1px solid var(--line);
-            border-radius: 999px;
-            color: #ffd1ad;
-            font-size: 0.78rem;
-            font-weight: 700;
-            letter-spacing: 0.16em;
+        h1 { 
+            font-size: 3.5rem; 
+            margin-bottom: 0.5rem; 
+            /* Electric blue gradient inspired by the "Nine" and "79" */
+            color: #0066ff; 
             text-transform: uppercase;
-            background: rgba(255, 122, 24, 0.08);
+            letter-spacing: 2px;
         }
-
-        h1 {
-            margin: 0 0 0.75rem;
-            font-size: clamp(2.2rem, 6vw, 4rem);
-            line-height: 1;
-            letter-spacing: -0.04em;
-        }
-
-        p {
-            max-width: 620px;
-            margin: 0 auto;
-            color: var(--muted);
-            font-size: clamp(1rem, 2.2vw, 1.25rem);
-            line-height: 1.6;
-        }
-
-        .divider {
-            width: 150px;
-            height: 3px;
-            margin: 1.5rem auto;
-            border-radius: 999px;
-            background: linear-gradient(90deg, transparent, var(--orange), transparent);
-        }
-
-        .footer-note {
-            margin-top: 1.25rem;
-            color: #9d9184;
-            font-size: 0.95rem;
-        }
-
-        @media (max-width: 520px) {
-            body {
-                padding: 1rem;
-            }
-
-            .content {
-                padding: 1.35rem;
-                border-radius: 22px;
-            }
-
-            .logo {
-                max-width: 320px;
-            }
+        p { 
+            /* Metallic silver/grey inspired by the "Seven" and "Works" */
+            color: #a1a1a1; 
+            font-size: 1.4rem; 
+            font-weight: 300;
+            border-top: 1px solid #333;
+            display: inline-block;
+            padding-top: 1rem;
+            margin-top: 1rem;
         }
     </style>
 </head>
-
 <body>
-    <main class="content">
-        <img class="logo" src="./logo.png" alt="SevenNine Works Custom 3D Printing logo" />
-
-        <div class="eyebrow">Custom 3D Printing</div>
-
-        <h1>SevenNine Works is coming soon.</h1>
-
-        <div class="divider"></div>
-
-        <p>
-            Practical parts, personalized designs, and small-batch 3D prints.
-            Check back soon as we get everything dialed in.
-        </p>
-
-        <p class="footer-note">Made with care. Printed with purpose.</p>
-    </main>
+    <div class="content">
+        <h1>Something is brewing.</h1>
+        <p>SevenNine Works is under construction.</p>
+    </div>
 </body>
 </html>
