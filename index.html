@@ -2,46 +2,99 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Coming Soon | SevenNine Works</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SevenNine Works | Coming Soon</title>
     <style>
-        body { 
-            background: #000000; /* Deep black to match logo background */
-            color: #ffffff; 
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            height: 100vh; 
-            margin: 0; 
+        body {
+            background-color: #0a0a0a;
+            background: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
         }
-        .content { 
-            text-align: center; 
-            padding: 20px;
+
+        .card {
+            background: #111111;
+            border: 1px solid #1e293b; /* Subtle blue-grey border */
+            border-radius: 24px;
+            padding: 60px 40px;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(0, 102, 255, 0.1); /* Faint blue glow */
         }
-        h1 { 
-            font-size: 3.5rem; 
-            margin-bottom: 0.5rem; 
-            /* Electric blue gradient inspired by the "Nine" and "79" */
-            color: #0066ff; 
-            text-transform: uppercase;
-            letter-spacing: 2px;
+
+        .logo {
+            width: 220px;
+            margin-bottom: 30px;
         }
-        p { 
-            /* Metallic silver/grey inspired by the "Seven" and "Works" */
-            color: #a1a1a1; 
-            font-size: 1.4rem; 
-            font-weight: 300;
-            border-top: 1px solid #333;
+
+        .badge {
             display: inline-block;
-            padding-top: 1rem;
-            margin-top: 1rem;
+            border: 1px solid #0066ff; /* Logo blue */
+            color: #0066ff;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 2px;
+            padding: 4px 16px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin: 0 0 20px 0;
+            line-height: 1.1;
+            font-weight: 700;
+        }
+
+        .divider {
+            height: 2px;
+            width: 100px;
+            background: linear-gradient(90deg, transparent, #0066ff, transparent);
+            margin: 20px auto;
+        }
+
+        p {
+            color: #a1a1a1; /* Chrome silver/grey */
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: #555;
         }
     </style>
 </head>
 <body>
-    <div class="content">
-        <h1>Something is brewing.</h1>
-        <p>SevenNine Works is under construction.</p>
+
+    <div class="card">
+        <!-- Using your logo file -->
+        <img src="logo.jpg" alt="SevenNine Works Logo" class="logo">
+
+        <div>
+            <span class="badge">Custom 3D Printing</span>
+        </div>
+
+        <h1>SevenNine Works is coming soon.</h1>
+
+        <div class="divider"></div>
+
+        <p class="tagline">Practical parts, personalized designs, and small-batch 3D prints.</p>
+        <p>Check back soon as we get everything dialed in.</p>
+
+        <footer>Made with care. Printed with purpose.</footer>
     </div>
+
 </body>
 </html>
