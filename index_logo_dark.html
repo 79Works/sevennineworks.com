@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SevenNine Works | Coming Soon</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        :root {
+            --blue: #006dff;
+            --blue-bright: #18a3ff;
+            --blue-glow: rgba(0, 119, 255, 0.52);
+            --ink: #f4f8ff;
+            --steel: #a9b4c4;
+            --muted: #768295;
+            --panel: rgba(8, 12, 18, 0.72);
+            --panel-border: rgba(53, 140, 255, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: var(--ink);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 18px;
+            background:
+                radial-gradient(circle at 56% 30%, rgba(0, 110, 255, 0.38), transparent 28%),
+                radial-gradient(circle at 48% 56%, rgba(12, 98, 220, 0.22), transparent 38%),
+                linear-gradient(90deg, #000 0%, #070a10 18%, #151b25 48%, #06142a 72%, #000 100%);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(90deg, rgba(255,255,255,0.035), transparent 18%, rgba(0,110,255,0.05), transparent 42%),
+                repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 18px);
+            mask-image: radial-gradient(circle at center, black, transparent 78%);
+            opacity: 0.62;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: auto 0 0;
+            height: 38%;
+            pointer-events: none;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.84));
+        }
+
+        .card {
+            position: relative;
+            width: min(100%, 760px);
+            padding: 42px 42px 40px;
+            text-align: center;
+            background: var(--panel);
+            border: 1px solid var(--panel-border);
+            border-radius: 30px;
+            box-shadow:
+                0 34px 110px rgba(0, 0, 0, 0.68),
+                0 0 78px rgba(0, 102, 255, 0.24),
+                0 0 0 1px rgba(255, 255, 255, 0.07) inset;
+            backdrop-filter: blur(14px);
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: 16px;
+            z-index: -1;
+            border-radius: 26px;
+            background:
+                radial-gradient(circle at 68% 28%, rgba(0, 119, 255, 0.28), transparent 34%),
+                linear-gradient(135deg, rgba(255,255,255,0.06), transparent 45%, rgba(0,102,255,0.13));
+            filter: blur(20px);
+        }
+
+        .logo-wrap {
+            margin: 0 auto 24px;
+            padding: 0;
+            border-radius: 26px;
+            background:
+                radial-gradient(circle at 61% 50%, rgba(0, 119, 255, 0.32), transparent 42%),
+                radial-gradient(circle at 36% 52%, rgba(255,255,255,0.08), transparent 34%);
+        }
+
+        .logo {
+            display: block;
+            width: min(100%, 610px);
+            height: auto;
+            margin: 0 auto;
+            filter:
+                drop-shadow(0 0 18px rgba(0, 119, 255, 0.48))
+                drop-shadow(0 24px 34px rgba(0, 0, 0, 0.82));
+        }
+
+        .badge {
+            display: inline-block;
+            border: 1px solid rgba(24, 163, 255, 0.68);
+            color: #d7efff;
+            background:
+                linear-gradient(180deg, rgba(0, 102, 255, 0.22), rgba(0, 102, 255, 0.08));
+            box-shadow:
+                0 0 24px rgba(0, 119, 255, 0.22),
+                0 0 0 1px rgba(255,255,255,0.07) inset;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 2px;
+            padding: 7px 18px;
+            border-radius: 999px;
+            margin-bottom: 22px;
+            font-weight: 800;
+        }
+
+        h1 {
+            color: var(--ink);
+            text-shadow: 0 0 28px rgba(0, 102, 255, 0.24);
+            font-size: clamp(2rem, 5vw, 2.85rem);
+            margin: 0 0 18px;
+            line-height: 1.08;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+        }
+
+        .divider {
+            height: 2px;
+            width: 138px;
+            background: linear-gradient(90deg, transparent, var(--blue), var(--blue-bright), transparent);
+            margin: 22px auto;
+            border-radius: 999px;
+            box-shadow: 0 0 18px rgba(0, 119, 255, 0.68);
+        }
+
+        p {
+            color: var(--steel);
+            line-height: 1.65;
+            margin: 10px auto;
+            max-width: 520px;
+        }
+
+        .tagline {
+            font-size: 1.08rem;
+            color: #d9e6f6;
+            font-weight: 600;
+        }
+
+        footer {
+            margin-top: 32px;
+            font-size: 0.82rem;
+            color: var(--muted);
+            letter-spacing: 0.02em;
+        }
+
+        @media (max-width: 560px) {
+            body {
+                align-items: flex-start;
+                padding-top: 22px;
+            }
+
+            .card {
+                padding: 28px 18px 30px;
+                border-radius: 22px;
+            }
+
+            .logo-wrap {
+                margin-bottom: 20px;
+            }
+
+            .badge {
+                font-size: 10px;
+                letter-spacing: 1.5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="card" aria-label="SevenNine Works coming soon">
+        <div class="logo-wrap">
+            <img src="logo_1920x1080.png" alt="SevenNine Works Logo" class="logo">
+        </div>
+
+        <div>
+            <span class="badge">Custom 3D Printing</span>
+        </div>
+
+        <h1>SevenNine Works is coming soon.</h1>
+
+        <div class="divider"></div>
+
+        <p class="tagline">Practical parts, personalized designs, and small-batch 3D prints.</p>
+        <p>Check back soon as we get everything dialed in.</p>
+
+        <footer>Made with care. Printed with purpose.</footer>
+    </main>
+
+</body>
+</html>
