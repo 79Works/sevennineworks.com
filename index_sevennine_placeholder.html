@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SevenNine Works | Coming Soon</title>
+    <meta name="description" content="SevenNine Works is a small 3D printing shop getting things dialed in.">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        :root {
+            --blue: #006dff;
+            --blue-bright: #18a3ff;
+            --ink: #f5f8ff;
+            --steel: #b7c3d4;
+            --muted: #7f8da1;
+            --deep: #03060b;
+            --panel: rgba(8, 12, 18, 0.76);
+            --panel-border: rgba(65, 150, 255, 0.28);
+            --line: rgba(255, 255, 255, 0.09);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            min-height: 100%;
+            background: var(--deep);
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: var(--ink);
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 18px;
+            background:
+                radial-gradient(circle at 58% 26%, rgba(0, 110, 255, 0.32), transparent 26%),
+                radial-gradient(circle at 50% 52%, rgba(0, 84, 190, 0.16), transparent 42%),
+                linear-gradient(90deg, #000 0%, #06080e 20%, #111824 50%, #061326 76%, #000 100%);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(90deg, rgba(255,255,255,0.028), transparent 18%, rgba(0,110,255,0.04), transparent 44%),
+                repeating-linear-gradient(90deg, rgba(255,255,255,0.018) 0 1px, transparent 1px 24px);
+            mask-image: radial-gradient(circle at center, black, transparent 76%);
+            opacity: 0.50;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: auto 0 0;
+            height: 34%;
+            pointer-events: none;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.88));
+        }
+
+        .card {
+            position: relative;
+            width: min(100%, 720px);
+            padding: 34px 42px 34px;
+            text-align: center;
+            background:
+                linear-gradient(180deg, rgba(15, 22, 32, 0.80), rgba(5, 8, 13, 0.78)),
+                var(--panel);
+            border: 1px solid var(--panel-border);
+            border-radius: 30px;
+            box-shadow:
+                0 34px 110px rgba(0, 0, 0, 0.72),
+                0 0 66px rgba(0, 102, 255, 0.18),
+                0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+            backdrop-filter: blur(14px);
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 68% 22%, rgba(0, 119, 255, 0.22), transparent 32%),
+                linear-gradient(135deg, rgba(255,255,255,0.052), transparent 42%, rgba(0,102,255,0.09));
+            opacity: 0.9;
+        }
+
+        .card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            border-radius: inherit;
+            background: linear-gradient(90deg, transparent, rgba(24, 163, 255, 0.23), transparent);
+            height: 1px;
+            opacity: 0.8;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-wrap {
+            margin: 0 auto 18px;
+            border-radius: 26px;
+            background:
+                radial-gradient(circle at 61% 50%, rgba(0, 119, 255, 0.28), transparent 42%),
+                radial-gradient(circle at 36% 52%, rgba(255,255,255,0.065), transparent 34%);
+        }
+
+        .logo {
+            display: block;
+            width: min(100%, 540px);
+            height: auto;
+            margin: 0 auto;
+            filter:
+                drop-shadow(0 0 18px rgba(0, 119, 255, 0.42))
+                drop-shadow(0 24px 34px rgba(0, 0, 0, 0.84));
+        }
+
+        .badge {
+            display: inline-block;
+            border: 1px solid rgba(24, 163, 255, 0.68);
+            color: #e0f3ff;
+            background:
+                linear-gradient(180deg, rgba(0, 102, 255, 0.20), rgba(0, 102, 255, 0.075));
+            box-shadow:
+                0 0 22px rgba(0, 119, 255, 0.20),
+                0 0 0 1px rgba(255,255,255,0.065) inset;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 2px;
+            padding: 7px 18px;
+            border-radius: 999px;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        h1 {
+            color: var(--ink);
+            text-shadow: 0 0 28px rgba(0, 102, 255, 0.20);
+            font-size: clamp(2rem, 5vw, 2.7rem);
+            margin: 0;
+            line-height: 1.08;
+            font-weight: 850;
+            letter-spacing: -0.045em;
+        }
+
+        .divider {
+            height: 2px;
+            width: 138px;
+            background: linear-gradient(90deg, transparent, var(--blue), var(--blue-bright), transparent);
+            margin: 22px auto;
+            border-radius: 999px;
+            box-shadow: 0 0 18px rgba(0, 119, 255, 0.58);
+        }
+
+        p {
+            color: var(--steel);
+            line-height: 1.65;
+            margin: 10px auto;
+            max-width: 540px;
+        }
+
+        .tagline {
+            font-size: 1.08rem;
+            color: #dfe9f8;
+            font-weight: 650;
+        }
+
+        .subtext {
+            color: #9daabc;
+        }
+
+        .contact {
+            margin: 28px auto 0;
+            padding-top: 22px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .contact a {
+            color: #d7ecff;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(24, 163, 255, 0.45);
+            transition: color 180ms ease, border-color 180ms ease;
+        }
+
+        .contact a:hover {
+            color: #ffffff;
+            border-color: rgba(24, 163, 255, 0.9);
+        }
+
+        footer {
+            margin-top: 18px;
+            font-size: 0.82rem;
+            color: var(--muted);
+            letter-spacing: 0.02em;
+        }
+
+        @media (max-width: 620px) {
+            body {
+                align-items: flex-start;
+                padding-top: 22px;
+            }
+
+            .card {
+                padding: 24px 18px 28px;
+                border-radius: 22px;
+            }
+
+            .logo-wrap {
+                margin-bottom: 16px;
+            }
+
+            .badge {
+                font-size: 10px;
+                letter-spacing: 1.5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="card" aria-label="SevenNine Works coming soon">
+        <div class="content">
+            <div class="logo-wrap">
+                <img src="logo_clean_tran1.png" alt="SevenNine Works Logo" class="logo">
+            </div>
+
+            <span class="badge">Custom 3D Printing</span>
+
+            <h1>SevenNine Works is coming soon</h1>
+
+            <div class="divider"></div>
+
+            <p class="tagline">A small print shop getting dialed in.</p>
+            <p class="subtext">Practical parts, personalized designs, and small-batch 3D prints are on the way.</p>
+
+            <div class="contact">
+                Contact: <a href="mailto:hello@sevennineworks.com">hello@sevennineworks.com</a>
+            </div>
+
+            <footer>Made with care. Printed with purpose.</footer>
+        </div>
+    </main>
+
+</body>
+</html>
