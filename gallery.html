@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | SevenNine Works</title>
+    <meta name="description" content="See SevenNine Works 3D prints: home décor, Bogg Bag and Croc charms, and flexi figures.">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        :root {
+            --blue: #006dff;
+            --blue-bright: #18a3ff;
+            --ink: #f5f8ff;
+            --steel: #b7c3d4;
+            --muted: #7f8da1;
+            --deep: #03060b;
+            --panel-border: rgba(65, 150, 255, 0.28);
+            --line: rgba(255, 255, 255, 0.09);
+        }
+
+        * { box-sizing: border-box; }
+
+        html { min-height: 100%; background: var(--deep); }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: var(--ink);
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 32px 18px;
+            background:
+                radial-gradient(circle at 58% 18%, rgba(0, 110, 255, 0.28), transparent 26%),
+                radial-gradient(circle at 50% 52%, rgba(0, 84, 190, 0.14), transparent 42%),
+                linear-gradient(90deg, #000 0%, #06080e 20%, #111824 50%, #061326 76%, #000 100%);
+            background-attachment: fixed;
+        }
+
+        .card {
+            position: relative;
+            width: min(100%, 1040px);
+            padding: 30px 36px 32px;
+            background: linear-gradient(180deg, rgba(15, 22, 32, 0.82), rgba(5, 8, 13, 0.80));
+            border: 1px solid var(--panel-border);
+            border-radius: 30px;
+            box-shadow:
+                0 34px 110px rgba(0, 0, 0, 0.72),
+                0 0 66px rgba(0, 102, 255, 0.16),
+                0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+        }
+
+        .top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .top img {
+            display: block;
+            height: 64px;
+            width: auto;
+            filter: drop-shadow(0 0 14px rgba(0, 119, 255, 0.4));
+        }
+
+        .back {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 999px;
+            border: 1px solid rgba(24, 163, 255, 0.55);
+            background: linear-gradient(180deg, rgba(0, 102, 255, 0.22), rgba(0, 102, 255, 0.08));
+            color: #e0f3ff;
+            font-size: 0.92rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 180ms ease, border-color 180ms ease;
+        }
+
+        .back:hover { border-color: rgba(24, 163, 255, 0.95); background: linear-gradient(180deg, rgba(0, 102, 255, 0.34), rgba(0, 102, 255, 0.14)); }
+
+        h1 {
+            margin: 26px 0 6px;
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            font-weight: 850;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+        }
+
+        .intro {
+            margin: 0 0 22px;
+            color: var(--steel);
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 22px;
+        }
+
+        .filters button {
+            font: inherit;
+            font-size: 0.9rem;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--steel);
+            cursor: pointer;
+            transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+        }
+
+        .filters button:hover { color: var(--ink); border-color: rgba(24, 163, 255, 0.5); }
+
+        .filters button[aria-pressed="true"] {
+            background: linear-gradient(180deg, var(--blue-bright), var(--blue));
+            border-color: transparent;
+            color: #fff;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .item { margin: 0; }
+        .item[hidden] { display: none; }
+
+        .thumb {
+            display: block;
+            width: 100%;
+            padding: 0;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            overflow: hidden;
+            background: #0a0f17;
+            cursor: zoom-in;
+            aspect-ratio: 1 / 1;
+        }
+
+        .thumb img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 260ms ease;
+        }
+
+        .thumb:hover img { transform: scale(1.04); }
+
+        figcaption {
+            margin-top: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #dfe9f8;
+        }
+
+        .back:focus-visible, .filters button:focus-visible, .thumb:focus-visible, .lb-btn:focus-visible {
+            outline: 2px solid var(--blue-bright);
+            outline-offset: 3px;
+        }
+
+        footer {
+            margin-top: 30px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--muted);
+        }
+
+        /* Lightbox */
+        dialog {
+            border: none;
+            padding: 0;
+            background: transparent;
+            max-width: 94vw;
+            max-height: 94vh;
+            color: var(--ink);
+        }
+
+        dialog::backdrop { background: rgba(2, 4, 8, 0.88); }
+
+        .lb-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .lb-wrap img {
+            display: block;
+            max-width: 90vw;
+            max-height: 80vh;
+            border-radius: 14px;
+            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.7);
+        }
+
+        .lb-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .lb-caption { font-weight: 700; min-width: 160px; text-align: center; }
+
+        .lb-btn {
+            font: inherit;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(24, 163, 255, 0.55);
+            background: rgba(0, 102, 255, 0.18);
+            color: #e0f3ff;
+            cursor: pointer;
+        }
+
+        @media (max-width: 620px) {
+            body { padding-top: 22px; }
+            .card { padding: 22px 16px 26px; border-radius: 22px; }
+            .top img { height: 50px; }
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .thumb img, .back, .filters button { transition: none; }
+            .thumb:hover img { transform: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="card">
+        <div class="top">
+            <a href="index.html"><img src="logo_clean_tran1.png" alt="SevenNine Works home"></a>
+            <a class="back" href="index.html">Back to home</a>
+        </div>
+
+        <h1>Our work</h1>
+        <p class="intro">A look at some of what we've printed. Find these and more at Woodscraps and Other Cute Things in Moundsville, or at our next show.</p>
+
+        <div class="filters" role="group" aria-label="Filter gallery">
+            <button type="button" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" data-filter="decor" aria-pressed="false">Home décor</button>
+            <button type="button" data-filter="charms" aria-pressed="false">Bag charms</button>
+            <button type="button" data-filter="flexi" aria-pressed="false">Flexi figures</button>
+        </div>
+
+        <!-- To add a photo: put the image in the images folder, then copy one <figure> block.
+             data-cat is decor, charms, or flexi. -->
+        <div class="grid">
+                <figure class="item" data-cat="decor">
+                    <button type="button" class="thumb" aria-label="View larger: Fall décor collection">
+                        <img src="images/fall-decor.jpg" alt="Fall décor collection" loading="lazy">
+                    </button>
+                    <figcaption>Fall décor collection</figcaption>
+                </figure>
+                <figure class="item" data-cat="flexi">
+                    <button type="button" class="thumb" aria-label="View larger: Flexi owl">
+                        <img src="images/flexi-owl.jpg" alt="Flexi owl" loading="lazy">
+                    </button>
+                    <figcaption>Flexi owl</figcaption>
+                </figure>
+                <figure class="item" data-cat="decor">
+                    <button type="button" class="thumb" aria-label="View larger: Ribbed vases">
+                        <img src="images/ribbed-vases.jpg" alt="Ribbed vases" loading="lazy">
+                    </button>
+                    <figcaption>Ribbed vases</figcaption>
+                </figure>
+                <figure class="item" data-cat="flexi">
+                    <button type="button" class="thumb" aria-label="View larger: Flexi snakes in every color">
+                        <img src="images/flexi-snakes-colors.jpg" alt="Flexi snakes in every color" loading="lazy">
+                    </button>
+                    <figcaption>Flexi snakes in every color</figcaption>
+                </figure>
+                <figure class="item" data-cat="charms">
+                    <button type="button" class="thumb" aria-label="View larger: Charm on a Crocs tote">
+                        <img src="images/croc-tote-charm.jpg" alt="Charm on a Crocs tote" loading="lazy">
+                    </button>
+                    <figcaption>Charm on a Crocs tote</figcaption>
+                </figure>
+                <figure class="item" data-cat="decor">
+                    <button type="button" class="thumb" aria-label="View larger: Black cats">
+                        <img src="images/black-cats.jpg" alt="Black cats" loading="lazy">
+                    </button>
+                    <figcaption>Black cats</figcaption>
+                </figure>
+                <figure class="item" data-cat="flexi">
+                    <button type="button" class="thumb" aria-label="View larger: Flexi dragons">
+                        <img src="images/flexi-dragons.jpg" alt="Flexi dragons" loading="lazy">
+                    </button>
+                    <figcaption>Flexi dragons</figcaption>
+                </figure>
+                <figure class="item" data-cat="decor">
+                    <button type="button" class="thumb" aria-label="View larger: Highland cows">
+                        <img src="images/highland-cows.jpg" alt="Highland cows" loading="lazy">
+                    </button>
+                    <figcaption>Highland cows</figcaption>
+                </figure>
+                <figure class="item" data-cat="decor">
+                    <button type="button" class="thumb" aria-label="View larger: Ravens">
+                        <img src="images/ravens.jpg" alt="Ravens" loading="lazy">
+                    </button>
+                    <figcaption>Ravens</figcaption>
+                </figure>
+                <figure class="item" data-cat="flexi">
+                    <button type="button" class="thumb" aria-label="View larger: Flexi lizards">
+                        <img src="images/flexi-lizards.jpg" alt="Flexi lizards" loading="lazy">
+                    </button>
+                    <figcaption>Flexi lizards</figcaption>
+                </figure>
+                <figure class="item" data-cat="charms">
+                    <button type="button" class="thumb" aria-label="View larger: Dragon bag charm">
+                        <img src="images/dragon-bag-charm.jpg" alt="Dragon bag charm" loading="lazy">
+                    </button>
+                    <figcaption>Dragon bag charm</figcaption>
+                </figure>
+                <figure class="item" data-cat="decor">
+                    <button type="button" class="thumb" aria-label="View larger: Hen dishes">
+                        <img src="images/hen-dishes.jpg" alt="Hen dishes" loading="lazy">
+                    </button>
+                    <figcaption>Hen dishes</figcaption>
+                </figure>
+                <figure class="item" data-cat="flexi">
+                    <button type="button" class="thumb" aria-label="View larger: Flexi orcas">
+                        <img src="images/flexi-orcas.jpg" alt="Flexi orcas" loading="lazy">
+                    </button>
+                    <figcaption>Flexi orcas</figcaption>
+                </figure>
+                <figure class="item" data-cat="decor">
+                    <button type="button" class="thumb" aria-label="View larger: Moose">
+                        <img src="images/moose.jpg" alt="Moose" loading="lazy">
+                    </button>
+                    <figcaption>Moose</figcaption>
+                </figure>
+                <figure class="item" data-cat="charms">
+                    <button type="button" class="thumb" aria-label="View larger: Charm on a Crocs backpack">
+                        <img src="images/croc-backpack-charm.jpg" alt="Charm on a Crocs backpack" loading="lazy">
+                    </button>
+                    <figcaption>Charm on a Crocs backpack</figcaption>
+                </figure>
+                <figure class="item" data-cat="decor">
+                    <button type="button" class="thumb" aria-label="View larger: Flamingo">
+                        <img src="images/flamingo.jpg" alt="Flamingo" loading="lazy">
+                    </button>
+                    <figcaption>Flamingo</figcaption>
+                </figure>
+                <figure class="item" data-cat="flexi">
+                    <button type="button" class="thumb" aria-label="View larger: Flexi snakes">
+                        <img src="images/flexi-snakes-orange-black.jpg" alt="Flexi snakes" loading="lazy">
+                    </button>
+                    <figcaption>Flexi snakes</figcaption>
+                </figure>
+        </div>
+
+        <footer>Made with care. Printed with purpose.</footer>
+    </main>
+
+    <dialog id="lightbox" aria-label="Photo viewer">
+        <div class="lb-wrap">
+            <img id="lb-img" src="" alt="">
+            <div class="lb-bar">
+                <button type="button" class="lb-btn" id="lb-prev" aria-label="Previous photo">Prev</button>
+                <span class="lb-caption" id="lb-caption"></span>
+                <button type="button" class="lb-btn" id="lb-next" aria-label="Next photo">Next</button>
+                <button type="button" class="lb-btn" id="lb-close" aria-label="Close">Close</button>
+            </div>
+        </div>
+    </dialog>
+
+    <script>
+        const items = [...document.querySelectorAll('.item')];
+        const filterBtns = document.querySelectorAll('.filters button');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const f = btn.dataset.filter;
+                filterBtns.forEach(b => b.setAttribute('aria-pressed', b === btn));
+                items.forEach(it => { it.hidden = !(f === 'all' || it.dataset.cat === f); });
+            });
+        });
+
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lb-img');
+        const lbCap = document.getElementById('lb-caption');
+        let current = 0;
+
+        const visible = () => items.filter(it => !it.hidden);
+
+        function show(i) {
+            const list = visible();
+            current = (i + list.length) % list.length;
+            const img = list[current].querySelector('img');
+            lbImg.src = img.src;
+            lbImg.alt = img.alt;
+            lbCap.textContent = list[current].querySelector('figcaption').textContent;
+        }
+
+        items.forEach(it => {
+            it.querySelector('.thumb').addEventListener('click', () => {
+                show(visible().indexOf(it));
+                lb.showModal();
+            });
+        });
+
+        document.getElementById('lb-prev').addEventListener('click', () => show(current - 1));
+        document.getElementById('lb-next').addEventListener('click', () => show(current + 1));
+        document.getElementById('lb-close').addEventListener('click', () => lb.close());
+        lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
+        lb.addEventListener('keydown', e => {
+            if (e.key === 'ArrowLeft') show(current - 1);
+            if (e.key === 'ArrowRight') show(current + 1);
+        });
+    </script>
+
+</body>
+</html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SevenNine Works | Custom 3D Printing</title>
-    <meta name="description" content="SevenNine Works makes handmade 3D printed goods. Find us at Woodscraps and Other Cute Things and at upcoming craft shows.">
+    <meta name="description" content="SevenNine Works makes quality 3D printed home décor, Bogg Bag and Croc accessories, and flexi figures. Find us at Woodscraps and Other Cute Things in Moundsville, WV, and at upcoming craft shows.">
     <link rel="icon" type="image/png" href="favicon.png">
     <style>
         :root {
@@ -202,6 +202,56 @@
             border-color: rgba(24, 163, 255, 0.9);
         }
 
+        .make {
+            margin-top: 30px;
+        }
+
+        .make h2,
+        .make-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            text-align: left;
+        }
+
+        .make-item {
+            padding: 16px 18px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.025);
+        }
+
+        .make-item h3 {
+            margin: 0 0 6px;
+            font-size: 0.98rem;
+            font-weight: 750;
+            color: var(--ink);
+            line-height: 1.3;
+        }
+
+        .make-item p {
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            max-width: none;
+        }
+
+        .gallery-link {
+            margin-top: 6px;
+        }
+
+        .quality {
+            margin-top: 16px;
+            font-size: 0.95rem;
+            color: #b7c3d4;
+        }
+
+        @media (max-width: 620px) {
+            .make-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .info {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -312,6 +362,15 @@
             font-style: italic;
         }
 
+        .pickup-note {
+            margin-top: 12px !important;
+            padding-top: 10px;
+            border-top: 1px solid var(--line);
+            color: #dfe9f8;
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
         .show-info strong {
             display: block;
             color: var(--ink);
@@ -395,17 +454,37 @@
     <main class="card" aria-label="SevenNine Works custom 3D printing">
         <div class="content">
             <div class="logo-wrap">
-                <img src="logo_clean_tran1.png" alt="SevenNine Works Logo" class="logo">
+                <img src="logo_clean_tran1.png" alt="SevenNine Works" class="logo">
             </div>
 
             <span class="badge">Now open</span>
 
-            <h1>SevenNine Works is up and running</h1>
+            <h1>Small-batch 3D prints, made in West Virginia</h1>
 
             <div class="divider"></div>
 
-            <p class="tagline">Handmade 3D printed goods from a small local shop.</p>
-            <p class="subtext">Come see what we've been printing, in our storefront or at a show near you.</p>
+            <p class="tagline">Home décor, accessories, and fun little extras, printed in-house with care.</p>
+            <p class="subtext">Find our work at Woodscraps and Other Cute Things in Moundsville, or at a show near you.</p>
+
+            <section class="make" aria-labelledby="what-we-make">
+                <h2 id="what-we-make">What we make</h2>
+                <div class="make-grid">
+                    <div class="make-item">
+                        <h3>Home décor</h3>
+                        <p>Pieces that add a little personality to a shelf, desk, or mantel.</p>
+                    </div>
+                    <div class="make-item">
+                        <h3>Bogg Bag &amp; Croc accessories</h3>
+                        <p>Charms and add-ons to make your bag or shoes your own.</p>
+                    </div>
+                    <div class="make-item">
+                        <h3>Flexi figures</h3>
+                        <p>Poseable, wiggly prints that are fun to fidget with and collect.</p>
+                    </div>
+                </div>
+                <p class="quality">Every piece is checked for quality before it leaves the shop. We're always adding new designs, and we're glad to try something new.</p>
+                <a class="social-link gallery-link" href="gallery.html">See the gallery</a>
+            </section>
 
             <div class="info">
                 <section class="info-block" aria-labelledby="find-us">
@@ -413,6 +492,7 @@
                     <p class="store-name"><a href="https://www.facebook.com/tonipaints/" target="_blank" rel="noopener noreferrer">Woodscraps and Other Cute Things</a></p>
                     <p class="store-detail">320 Jefferson Avenue<br>Moundsville, WV 26041</p>
                     <p class="store-detail"><a href="https://www.google.com/maps/search/?api=1&amp;query=320+Jefferson+Avenue+Moundsville+WV+26041" target="_blank" rel="noopener noreferrer">Get directions</a></p>
+                    <p class="pickup-note">Custom orders can be picked up here.</p>
                 </section>
 
                 <section class="info-block" aria-labelledby="shows">
@@ -428,7 +508,7 @@
                 </section>
             </div>
 
-            <p class="idea">Have a project idea? We'd love to hear it.</p>
+            <p class="idea">Have a custom project in mind? We'd love to hear about it.</p>
 
             <div class="contact">
                 <div class="social">
